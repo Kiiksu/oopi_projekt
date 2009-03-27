@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<project name="xmpp_bot" default="compile" basedir=".">
+
+  <property name="app.name" value="xmpp_bot" />
+  <property name="src"      value="src" />
+  <property name="build"    value="build" />
+  <property name="tests"    value="tests" />
+  <property name="docs"     value="docs" />
+
+  <target name="init">
+    <mkdir dir="${build}"/>
+  </target>
+
+  <target name="all" depends="clean,compile" description="Puhastab kõik ära ning ehitab uuesti üles"/>
+
+  <target name="compile" depends="init">
+    <javac srcdir="${src}" destdir="${build}" />
+    <javac srcdir="${tests}" destdir="${tests}" />
+  </target>
+
+  <target name="docs" depends="compile" description="Dokumentatsiooni tegemine">
+    <mkdir dir="${docs}" />
+    <javadoc sourcepath="${src}" destdir="${docs}" packagenames="*" />
+  </target>
+
+  <target name="clean" description="Teeb kaustad igast saastast puhtaks">
+    <delete verbose="true" failonerror="false" includeEmptyDirs="true">
+      <fileset dir="${build}" />
+      <fileset dir="${dist}" />
+      <fileset dir="${docs}" />
+    </delete>
+  </target>
+
+</project>
