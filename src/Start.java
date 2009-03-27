@@ -4,7 +4,6 @@ import xmpp_bot.*;
  * TODO
  */
 public class Start {
-
   /**
    * TODO
    */
@@ -13,5 +12,4 @@ public class Start {
     Server s = new Server("bot", "oopi_projekt", "conference.drop.io");
     s.listen();
   }
-
 }

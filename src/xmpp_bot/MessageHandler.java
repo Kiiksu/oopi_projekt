@@ -10,8 +10,12 @@ public class MessageHandler {
   /** TODO */
   private static MessageHandler ref;
 
+  /** TODO */
+  public RoutingDispatcher dispatcher;
+
   /** TODO Võimalik, et on vaja kasutada sünkroniseerimist */
   private ArrayList<String> queue;
+
 
   /** TODO */
   private MessageHandler() {
@@ -41,6 +45,7 @@ public class MessageHandler {
     // Edasi tuleb see Message saata RoutingDispatcherile
     // RoutingDispatcher peaks olema saadaval selles klassis kogu aeg.
     // St. ei tee kogu aeg uut objekti.
+    // dispatcher.dispatch(message)
   }
 
   /**
