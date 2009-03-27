@@ -1,1 +1,4 @@
-TERE
+XMPP/JABBER BOT
+
+Kompileerimiseks trükkida "ant all" terminali.
+Peale seda on võimalik app tööle panna minnes bin kausta ja tehes käsk "java Start".
