@@ -24,6 +24,11 @@ public class MessageHandler {
     } 
     return ref;
   }
+  
+  /** Seda objekti ei tohi lasta kloonida */
+  public Object clone() throws CloneNotSupportedException {
+    throw new CloneNotSupportedException(); 
+  }
 
   /**
    * Tegeleb kirjade vastuvõtmisega

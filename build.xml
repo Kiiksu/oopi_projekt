@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project name="xmpp_bot" default="compile" basedir=".">
+<project name="xmpp_bot" default="all" basedir=".">
 
   <property name="app.name" value="xmpp_bot" />
   <property name="src"      value="src" />
