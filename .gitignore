@@ -5,3 +5,4 @@
 
 build
 tests/*.class
+lib/xmpp_bot.jar

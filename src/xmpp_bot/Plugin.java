@@ -29,7 +29,7 @@ public abstract class Plugin {
    * TODO
    *
    */
-  public void create_message_and_send(String msg) {
+  public void create_and_send_message(String msg) {
     // Teha uus Message objekt
     // Saata see MessageHandler-ile
   }

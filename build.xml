@@ -1,34 +1,78 @@
 <?xml version="1.0"?>
 <project name="xmpp_bot" default="all" basedir=".">
 
+  <property name="base.dir" value="." />
   <property name="app.name" value="xmpp_bot" />
+  <property name="app.jar"  value="xmpp_bot.jar" />
   <property name="src"      value="src" />
   <property name="build"    value="build" />
-  <property name="tests"    value="tests" />
   <property name="docs"     value="docs" />
+  <property name="lib"      value="lib" />
 
+  <!-- APPi classpath -->
+  <path id="base.classpath">
+    <fileset dir="${lib}">
+      <include name="*.jar"/>
+      <include name="**/*.jar"/>
+    </fileset>
+  </path>
+
+  <!-- Classpath testide jooksutamiseks -->
+  <path id="tests.classpath">
+    <path refid="base.classpath"/> 
+  </path>
+
+  <!-- Vajalike muudatuste tegemine enne kompilleerimist -->
   <target name="init">
     <mkdir dir="${build}"/>
   </target>
 
-  <target name="all" depends="clean,compile" description="Puhastab kõik ära ning ehitab uuesti üles"/>
+  <!-- Teeb kõik mis vaja -->
+  <target name="all" depends="clean,compile,dist,run.tests" 
+    description="Puhastab kõik ära, kompilleerib uuesti, teeb jar faili"/>
 
+  <!-- Kompilleerimine -->
   <target name="compile" depends="init">
-    <javac srcdir="${src}" destdir="${build}" />
-    <javac srcdir="${tests}" destdir="${tests}" />
+    <javac srcdir="${src}" destdir="${build}">
+      <classpath refid="base.classpath"/>
+    </javac>
   </target>
 
+  <!-- Testide jooksutamine -->
+  <target name="run.tests" description="Käivitab testid">
+    <junit fork="true" printsummary="no" showoutput="yes">
+      <classpath refid="tests.classpath"/>
+
+      <formatter type="brief" usefile="no"/>
+
+      <!--<test name="xmpp_bot.plugins.tests.HelloPluginTest" />-->
+
+      <batchtest>
+        <fileset dir="${build}" includes="**/*Test.class"/>
+      </batchtest>
+    </junit>
+  </target>
+
+  <!-- Teegi tegemine -->
+  <target name="dist" description="Teeb appist jar faili">
+    <jar jarfile="${lib}/${app.jar}">
+      <fileset dir="${build}"/>
+    </jar>
+  </target>
+
+  <!-- Dokumentatsioon -->
   <target name="docs" depends="compile" description="Dokumentatsiooni tegemine">
     <mkdir dir="${docs}" />
     <javadoc sourcepath="${src}" destdir="${docs}" packagenames="*" />
   </target>
 
+  <!-- Puhastamine -->
   <target name="clean" description="Teeb kaustad igast saastast puhtaks">
     <delete verbose="true" failonerror="false" includeEmptyDirs="true">
       <fileset dir="${build}" />
-      <fileset dir="${dist}" />
       <fileset dir="${docs}" />
     </delete>
-  </target>
 
+    <delete file="${lib}/${app.jar}" failonerror="false" />
+  </target>
 </project>
