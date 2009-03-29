@@ -15,7 +15,7 @@ public class HelloPlugin extends Plugin {
    * @see Plugin
    */
   public void do_work(Message m) {
-    String msg = "Tere" + m.params[0];
-    create_message_and_send(msg);
+    String msg = "Tere " + m.params[0];
+    create_and_send_message(msg);
   }
 }
