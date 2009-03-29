@@ -30,7 +30,9 @@ public abstract class Plugin {
    *
    */
   public void create_and_send_message(String msg) {
-    // Teha uus Message objekt
-    // Saata see MessageHandler-ile
+    Message m = new Message();
+    m.message = msg;
+    // seada vajalikud parameetrid messagele.
+    // TODO: Saata message MessageHandler-ile
   }
 }

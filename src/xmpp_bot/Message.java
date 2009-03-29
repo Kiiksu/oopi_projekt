@@ -7,6 +7,9 @@ public class Message {
   /** TODO */
   public String[] params;
 
+  /** TODO */
+  public String message;
+
   // TODO: Parameetreid tuleb kindlasti veel juurde. */
 
 
